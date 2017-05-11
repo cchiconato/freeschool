@@ -10,9 +10,6 @@ import br.com.intro.utils.BaseEntity;
 @Table(name = "pessoa")
 public class PessoaEntity extends BaseEntity<Long> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "nome", length = 100, nullable = false)
@@ -27,7 +24,6 @@ public class PessoaEntity extends BaseEntity<Long> {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -36,7 +32,6 @@ public class PessoaEntity extends BaseEntity<Long> {
 	public int getIdade() {
 		return idade;
 	}
-
 
 	public void setIdade(int idade) {
 		this.idade = idade;

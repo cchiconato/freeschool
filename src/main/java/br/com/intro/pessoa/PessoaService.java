@@ -42,5 +42,4 @@ public class PessoaService implements ServiceMap {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
-	
 }

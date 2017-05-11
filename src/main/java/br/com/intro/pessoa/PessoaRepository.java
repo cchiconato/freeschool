@@ -11,5 +11,4 @@ public interface PessoaRepository extends JpaRepository<PessoaEntity, Long>{
 
 	public PessoaEntity findById(long id);
 	
-	
 }
