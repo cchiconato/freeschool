@@ -2,6 +2,7 @@ package br.com.intro.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
@@ -11,9 +12,6 @@ import br.com.intro.utils.BaseEntity;
 @Table(name = "user")
 public class UserEntity extends BaseEntity<Long> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "username", length = 100, nullable = false)
@@ -23,7 +21,7 @@ public class UserEntity extends BaseEntity<Long> {
 	private String password;
 
 	@Column(name = "userType", length = 100, nullable = false)
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	private UserType userType;
 
 	@Column(name = "birthYear", nullable = false)
@@ -74,5 +72,4 @@ public class UserEntity extends BaseEntity<Long> {
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
 	}
-
 }
