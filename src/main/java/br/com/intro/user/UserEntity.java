@@ -72,4 +72,5 @@ public class UserEntity extends BaseEntity<Long> {
 	public void setBirthYear(int birthYear) {
 		this.birthYear = birthYear;
 	}
+
 }
