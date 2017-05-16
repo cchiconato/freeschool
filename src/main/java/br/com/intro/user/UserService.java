@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.intro.utils.EmailSender;
 import br.com.intro.utils.ServiceMap;
 
 @RestController
@@ -24,7 +23,7 @@ public class UserService implements ServiceMap {
 	@Autowired
 	private UserVerificationRepository userVerificationRepository;
 
-	private EmailSender emailSender = new EmailSender();
+	private UserEmailSender emailSender = new UserEmailSender();
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserEntity> findAll() {
@@ -52,7 +51,7 @@ public class UserService implements ServiceMap {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(path = "/{verificationKey}", method = RequestMethod.GET)
+	@RequestMapping(path = "/activateUser/{verificationKey}", method = RequestMethod.GET)
 	public void activateUser(@PathVariable String verificationKey) {
 		UserVerificationEntity userVerificationEntityFound = userVerificationRepository.findByVerificationKey(verificationKey);
 		if (userVerificationEntityFound == null) throw new IllegalArgumentException("Conta de usuário já está ativada!");
