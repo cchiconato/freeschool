@@ -6,7 +6,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.intro.utils.BaseEntity;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 @Entity
 @Table(name = "user")
@@ -14,17 +20,18 @@ public class UserEntity extends BaseEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "username", length = 100, nullable = false)
-	private String username;
+	@Email
+	@Column(name = "user_name", length = 100, nullable = false, unique = true)
+	private String userName;
 
 	@Column(name = "password", length = 100, nullable = false)
 	private String password;
 
-	@Column(name = "userType", length = 100, nullable = false)
+	@Column(name = "user_type", length = 100, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private UserType userType;
 
-	@Column(name = "birthYear", nullable = false)
+	@Column(name = "birth_year", nullable = false)
 	private int birthYear;
 
 	@Column(name = "city", length = 100, nullable = false)
@@ -32,21 +39,30 @@ public class UserEntity extends BaseEntity<Long> {
 
 	@Column(name = "state", length = 100, nullable = false)
 	private String state;
+	
+	@Column(name = "is_verified", nullable = false)
+	private boolean isVerified;
 
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
+	public UserEntity(){}
+	
+	public UserEntity(String userName, String password, UserType userType, int birthYear, String city, String state,
+			boolean isVerified) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.userType = userType;
+		this.birthYear = birthYear;
 		this.city = city;
+		this.state = state;
+		this.isVerified = isVerified;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getPassword() {
@@ -73,4 +89,35 @@ public class UserEntity extends BaseEntity<Long> {
 		this.birthYear = birthYear;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public boolean isVerified() {
+		return isVerified;
+	}
+
+	public void setVerified(boolean isVerified) {
+		this.isVerified = isVerified;
+	}
+
+	@JsonIgnore
+	public String getToken() {
+		String token = Jwts.builder().setSubject(getUserName()).signWith(SignatureAlgorithm.HS512, "banana")
+				.compact() + getUserName();
+		return token.replace(".", "");
+	}
+	
 }
