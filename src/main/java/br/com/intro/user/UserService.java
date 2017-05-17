@@ -51,7 +51,7 @@ public class UserService implements ServiceMap {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
-	@RequestMapping(path = "/activateUser/{verificationKey}", method = RequestMethod.GET)
+	@RequestMapping(path = "/activate/{verificationKey}", method = RequestMethod.GET)
 	public void activateUser(@PathVariable String verificationKey) {
 		UserVerificationEntity userVerificationEntityFound = userVerificationRepository.findByVerificationKey(verificationKey);
 		if (userVerificationEntityFound == null) throw new IllegalArgumentException("Conta de usuário já está ativada!");

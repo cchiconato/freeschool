@@ -10,7 +10,7 @@ public class UserVerificationEmailSender {
 
 	public void send(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
 		try {
-			final String linkForVerification = "http://localhost:8080/api/user/activateUser/"
+			final String linkForVerification = "http://localhost:8080/api/user/activate/"
 					+ userVerificationEntity.getVerificationKey();
 
 			HtmlEmail email = new HtmlEmail();
