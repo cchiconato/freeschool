@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.intro.utils.ServiceMap;
 
@@ -52,12 +53,13 @@ public class UserService implements ServiceMap {
 	}
 
 	@RequestMapping(path = "/activate/{verificationKey}", method = RequestMethod.GET)
-	public void activateUser(@PathVariable String verificationKey) {
+	public RedirectView activateUser(@PathVariable String verificationKey) {
 		UserVerificationEntity userVerificationEntityFound = userVerificationRepository.findByVerificationKey(verificationKey);
 		if (userVerificationEntityFound == null) throw new IllegalArgumentException("Conta de usuário já está ativada!");
 		UserEntity userFound = userRepository.findByUserName(userVerificationEntityFound.getUserName());
 		userFound.setVerified(true);
 		userRepository.save(userFound);
 		userVerificationRepository.delete(userVerificationEntityFound);
+		return new RedirectView("http://google.com.br");
 	}
 }

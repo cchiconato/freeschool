@@ -1,5 +1,7 @@
 package br.com.intro.user;
 
+import static br.com.intro.utils.StringUtil.crypt;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -58,7 +60,7 @@ public class UserEntity extends BaseEntity<Long> {
 	}
 
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.userName = userName.replace(" ", "");
 	}
 
 	public String getPassword() {
@@ -66,7 +68,7 @@ public class UserEntity extends BaseEntity<Long> {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = crypt(password);
 	}
 
 	public UserType getUserType() {
