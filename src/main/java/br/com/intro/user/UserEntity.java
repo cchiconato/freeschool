@@ -45,7 +45,7 @@ public class UserEntity extends BaseEntity<Long> {
 	private String state;
 	
 	@Column(name = "is_verified", nullable = false)
-	private boolean isVerified;
+	private boolean isVerified = false;
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "registration_data")
