@@ -34,8 +34,7 @@ public class UserService implements ServiceMap {
 	@RequestMapping(method = RequestMethod.POST)
 	public void insert(@RequestBody UserEntity userEntity) {
 		userRepository.save(userEntity);
-		UserVerificationEntity userVerificationEntity = new UserVerificationEntity(userEntity.getUserName(),
-				userEntity.getToken());
+		UserVerificationEntity userVerificationEntity = new UserVerificationEntity(userEntity.getUserName(), userEntity.getToken());
 		userVerificationRepository.save(userVerificationEntity);
 		emailSender.send(userVerificationEntity, userEntity);
 	}
@@ -55,11 +54,11 @@ public class UserService implements ServiceMap {
 	@RequestMapping(path = "/activate/{verificationKey}", method = RequestMethod.GET)
 	public RedirectView activateUser(@PathVariable String verificationKey) {
 		UserVerificationEntity userVerificationEntityFound = userVerificationRepository.findByVerificationKey(verificationKey);
-		if (userVerificationEntityFound == null) throw new IllegalArgumentException("Conta de usuário já está ativada!");
+		if (userVerificationEntityFound == null) return new RedirectView("http://conta_ja_ativa.com.br"); //TODO mudar link para página de conta já ativada;
 		UserEntity userFound = userRepository.findByUserName(userVerificationEntityFound.getUserName());
 		userFound.setVerified(true);
 		userRepository.save(userFound);
 		userVerificationRepository.delete(userVerificationEntityFound);
-		return new RedirectView("http://google.com.br");
+		return new RedirectView("http://conta_ativada_com_sucesso.com.br"); //TODO mudar link para página de conta ativada com sucesso
 	}
 }

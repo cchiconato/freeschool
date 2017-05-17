@@ -50,7 +50,7 @@ public class UserEntity extends BaseEntity<Long> {
 	private boolean isVerified = false;
 	
 	@Temporal(TemporalType.DATE)
-	@Column(name = "registration_data")
+	@Column(name = "registration_date")
 	private Date registrationDate = new Date();
 
 	public UserEntity(){}
