@@ -1,10 +1,14 @@
 package br.com.intro.user;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Email;
 
@@ -42,20 +46,12 @@ public class UserEntity extends BaseEntity<Long> {
 	
 	@Column(name = "is_verified", nullable = false)
 	private boolean isVerified;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "registration_data")
+	private Date registrationDate = new Date();
 
 	public UserEntity(){}
-	
-	public UserEntity(String userName, String password, UserType userType, int birthYear, String city, String state,
-			boolean isVerified) {
-		super();
-		this.userName = userName;
-		this.password = password;
-		this.userType = userType;
-		this.birthYear = birthYear;
-		this.city = city;
-		this.state = state;
-		this.isVerified = isVerified;
-	}
 
 	public String getUserName() {
 		return userName;
@@ -111,6 +107,10 @@ public class UserEntity extends BaseEntity<Long> {
 
 	public void setVerified(boolean isVerified) {
 		this.isVerified = isVerified;
+	}
+	
+	public Date getRegistrationDate() {
+		return registrationDate;
 	}
 
 	@JsonIgnore
