@@ -23,6 +23,9 @@ public class UserService implements ServiceMap {
 
 	@Autowired
 	private UserVerificationRepository userVerificationRepository;
+	
+  	@Autowired
+	private UserVerificationEntity userVerificationEntity;
 
 	private UserVerificationEmailSender emailSender = new UserVerificationEmailSender();
 
@@ -34,7 +37,8 @@ public class UserService implements ServiceMap {
 	@RequestMapping(method = RequestMethod.POST)
 	public void insert(@RequestBody UserEntity userEntity) {
 		userRepository.save(userEntity);
-		UserVerificationEntity userVerificationEntity = new UserVerificationEntity(userEntity.getUserName(), userEntity.getToken());
+		userVerificationEntity.setUserName(userEntity.getUserName());
+		userVerificationEntity.setVerificationKey(userEntity.getToken());
 		userVerificationRepository.save(userVerificationEntity);
 		emailSender.send(userVerificationEntity, userEntity);
 	}
