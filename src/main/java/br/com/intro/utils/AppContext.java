@@ -10,5 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 @ComponentScan (basePackages = {"br.com.intro"})
 public class AppContext {
-
+  
+  	@Bean(name = "userVerificationEntity")
+	  public UserVerificationEntity getUserVerificationEntity() {
+	  	  return new UserVerificationEntity();
+	  }
 }
