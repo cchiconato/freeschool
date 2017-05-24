@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.intro.utils.ServiceMap;
 
 @RestController
-@RequestMapping(path = "/api/user")
+@RequestMapping(path = "/api/post")
 public class PostService implements ServiceMap {
 
 	@Autowired
