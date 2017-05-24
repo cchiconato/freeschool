@@ -10,11 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
-import br.com.intro.user.UserVerificationEmailSender;
-import br.com.intro.user.UserVerificationEntity;
-import br.com.intro.user.UserVerificationRepository;
 import br.com.intro.utils.ServiceMap;
 
 @RestController
