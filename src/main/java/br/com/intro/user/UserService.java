@@ -20,14 +20,12 @@ public class UserService implements ServiceMap {
 
 	@Autowired
 	private UserRepository userRepository;
-
 	@Autowired
 	private UserVerificationRepository userVerificationRepository;
-	
   	@Autowired
 	private UserVerificationEntity userVerificationEntity;
-
-	private UserVerificationEmailSender emailSender = new UserVerificationEmailSender();
+  	@Autowired
+	private UserVerificationEmailSender emailSender;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserEntity> findAll() {
