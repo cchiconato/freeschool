@@ -8,7 +8,7 @@ import org.apache.commons.mail.HtmlEmail;
 
 public class UserVerificationEmailSender {
 
-	public void send(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
+	public void sendEmail(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
 		try {
 			final String linkForVerification = "http://localhost:8080/api/user/activate/"
 					+ userVerificationEntity.getVerificationKey();
