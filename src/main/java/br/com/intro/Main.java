@@ -15,9 +15,9 @@ public class Main {
 		new Timer().scheduleAtFixedRate(new TimerTask(){
 		    @Override
 		    public void run(){
-		       System.out.println("A Kiss every 5 seconds");
+		       System.out.println("Request for heroku no sleeping after 30 min");
 		    }
-		},0,25000);
+		},0, 29*60000);
 		SpringApplication.run(AppContext.class, args);
 	}
 
