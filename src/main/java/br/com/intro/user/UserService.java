@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import br.com.intro.utils.EmailSender;
 import br.com.intro.utils.ServiceMap;
 
 @RestController
@@ -24,8 +25,6 @@ public class UserService implements ServiceMap {
 	private UserVerificationRepository userVerificationRepository;
   	@Autowired
 	private UserVerificationEntity userVerificationEntity;
-  	@Autowired
-	private UserVerificationEmailSender emailSender;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserEntity> findAll() {
@@ -38,7 +37,7 @@ public class UserService implements ServiceMap {
 		userVerificationEntity.setUserName(userEntity.getUserName());
 		userVerificationEntity.setVerificationKey(userEntity.getToken());
 		userVerificationRepository.save(userVerificationEntity);
-		emailSender.sendEmail(userVerificationEntity, userEntity);
+		EmailSender.sendEmailForUserConfirmation(userVerificationEntity, userEntity);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)

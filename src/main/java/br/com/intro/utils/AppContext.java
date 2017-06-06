@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import br.com.intro.user.UserVerificationEmailSender;
 import br.com.intro.user.UserVerificationEntity;
 
 @Configuration
@@ -21,8 +20,8 @@ public class AppContext {
 	  }
   	
 	@Bean(name = "userVerificationEmailSender")
-	  public UserVerificationEmailSender getUserVerificationEmailSender() {
-	  	  return new UserVerificationEmailSender();
+	  public EmailSender getUserVerificationEmailSender() {
+	  	  return new EmailSender();
 	  }
   	
 }

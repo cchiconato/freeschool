@@ -1,4 +1,4 @@
-package br.com.intro.user;
+package br.com.intro.utils;
 
 import java.text.SimpleDateFormat;
 
@@ -6,9 +6,12 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-public class UserVerificationEmailSender {
+import br.com.intro.user.UserEntity;
+import br.com.intro.user.UserVerificationEntity;
 
-	public void sendEmail(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
+public class EmailSender {
+
+	public static void sendEmailForUserConfirmation(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
 		try {
 			final String linkForVerification = "http://localhost:8080/api/user/activate/"
 					+ userVerificationEntity.getVerificationKey();
@@ -33,7 +36,7 @@ public class UserVerificationEmailSender {
 		}
 	}
 
-	private String getHtmlMessage(UserEntity userEntity, final String linkForVerification) {
+	private static String getHtmlMessage(UserEntity userEntity, final String linkForVerification) {
 		StringBuilder html = new StringBuilder();
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy"); 
 		html.append("<html><body>");
