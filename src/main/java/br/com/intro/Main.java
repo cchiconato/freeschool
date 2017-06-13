@@ -1,5 +1,6 @@
 package br.com.intro;
 
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,6 +16,7 @@ public class Main {
 		new Timer().scheduleAtFixedRate(new TimerTask(){
 		    @Override
 		    public void run(){
+		    	System.out.println(new Date());
 		       System.out.println("Request for heroku no sleeping after 30 min");
 		    }
 		},0, 29*60000);

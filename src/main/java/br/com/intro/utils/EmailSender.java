@@ -7,14 +7,13 @@ import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
 import br.com.intro.user.UserEntity;
-import br.com.intro.user.UserVerificationEntity;
 
 public class EmailSender {
 
-	public static void sendEmailForUserConfirmation(UserVerificationEntity userVerificationEntity, UserEntity userEntity) {
+	public static void sendEmailForUserConfirmation(UserEntity userEntity) {
 		try {
 			final String linkForVerification = "http://localhost:8080/api/user/activate/"
-					+ userVerificationEntity.getVerificationKey();
+					+ userEntity.getToken();
 
 			HtmlEmail email = new HtmlEmail();
 			email.setStartTLSRequired(true);

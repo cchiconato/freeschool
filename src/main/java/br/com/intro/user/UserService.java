@@ -37,7 +37,7 @@ public class UserService implements ServiceMap {
 		userVerificationEntity.setUserName(userEntity.getUserName());
 		userVerificationEntity.setVerificationKey(userEntity.getToken());
 		userVerificationRepository.save(userVerificationEntity);
-		EmailSender.sendEmailForUserConfirmation(userVerificationEntity, userEntity);
+		EmailSender.sendEmailForUserConfirmation(userEntity);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
