@@ -1,6 +1,7 @@
 package br.com.freeschool;
 
-import java.util.Date;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -13,14 +14,22 @@ import br.com.freeschool.utils.AppContext;
 public class Main {
 
 	public static void main(String[] args) {
-		new Timer().scheduleAtFixedRate(new TimerTask(){
-		    @Override
-		    public void run(){
-		    	System.out.println(new Date());
-		       System.out.println("Request for heroku no sleeping after 30 min");
-		    }
-		},0, 29*60000);
+		new Timer().scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				RequestForHerokuNoSleep();
+			}
+		}, 0,  29 * 60000);
 		SpringApplication.run(AppContext.class, args);
 	}
 
+	public static void RequestForHerokuNoSleep() {
+		InputStream is;
+		try {
+			URL url = new URL("http://freeschool.herokuapp/api/public/user");
+			is = url.openStream();
+			is.close();
+		} catch (Exception e) {
+		}
+	}
 }
