@@ -15,6 +15,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import br.com.freeschool.utils.BaseEntity;
 import io.jsonwebtoken.Jwts;
@@ -31,6 +33,7 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	private String userName;
 
 	@Column(name = "password", length = 100, nullable = false)
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 
 	@Column(name = "is_verified", nullable = false)
@@ -39,8 +42,6 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "registration_date")
 	private Date registrationDate = new Date();
-
-	public UserEntity(){}
 
 	public void setUserName(String userName) {
 		this.userName = userName.replace(" ", "");
@@ -101,6 +102,7 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	}
 	
 	@Override
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}	
