@@ -26,7 +26,7 @@ public class Main {
 	public static void RequestForHerokuNoSleep() {
 		InputStream is;
 		try {
-			URL url = new URL("http://freeschool.herokuapp/api/public/user");
+			URL url = new URL("http://makeyourschool.herokuapp/api/public/user");
 			is = url.openStream();
 			is.close();
 		} catch (Exception e) {
