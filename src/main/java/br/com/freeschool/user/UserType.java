@@ -1,4 +1,4 @@
-package br.com.intro.user;
+package br.com.freeschool.user;
 
 public enum UserType {
 

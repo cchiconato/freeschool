@@ -1,4 +1,4 @@
-package br.com.intro.utils;
+package br.com.freeschool.utils;
 
 import java.text.SimpleDateFormat;
 
@@ -6,13 +6,13 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-import br.com.intro.user.UserEntity;
+import br.com.freeschool.user.UserEntity;
 
 public class EmailSender {
 
 	public static void sendEmailForUserConfirmation(UserEntity userEntity) {
 		try {
-			final String linkForVerification = "http://localhost:8080/api/user/activate/"
+			final String linkForVerification = "http://localhost:8080/api/public/user/activate/"
 					+ userEntity.getToken();
 
 			HtmlEmail email = new HtmlEmail();
@@ -27,7 +27,7 @@ public class EmailSender {
 			email.setSubject("Cadastro no Plebs");
 			email.setHtmlMsg(getHtmlMessage(userEntity, linkForVerification));
 			email.setTextMsg("Obrigado por cadastrar-se no Plebs! Clique no link para ativar sua conta: " + linkForVerification);
-			email.addTo(userEntity.getUserName());
+			email.addTo(userEntity.getUsername());
 			email.send();
 
 		} catch (EmailException e) {
@@ -41,7 +41,7 @@ public class EmailSender {
 		html.append("<html><body>");
 		html.append("<h1>Obrigado por cadastrar-se no Plebs!</h1>");
 		html.append("<table rules='all' style='border-color: #666;' cellpadding='10'>");
-		html.append("<tr style='background: #eee;'><td><strong>Usuário :</strong> </td><td>"+userEntity.getUserName()+"</td></tr>");
+		html.append("<tr style='background: #eee;'><td><strong>Usuário :</strong> </td><td>"+userEntity.getUsername()+"</td></tr>");
 		html.append("<tr><td><strong>Data de cadastro :</strong> </td><td>"+dt.format(userEntity.getRegistrationDate())+"</td></tr>");
 		html.append("</table>");
 		html.append("<h3>Para ativar sua conta clique no link abaixo: </h3>");

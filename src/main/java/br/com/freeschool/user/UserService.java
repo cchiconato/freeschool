@@ -1,10 +1,6 @@
-package br.com.intro.user;
-
-import java.util.List;
+package br.com.freeschool.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
-import br.com.intro.utils.EmailSender;
-import br.com.intro.utils.ServiceMap;
+import br.com.freeschool.utils.EmailSender;
+import br.com.freeschool.utils.ServiceMap;
 
 @RestController
-@RequestMapping(path = "/api/user")
+@RequestMapping(path = "/api/public/user")
 public class UserService implements ServiceMap {
 
 	@Autowired
@@ -26,30 +22,13 @@ public class UserService implements ServiceMap {
   	@Autowired
 	private UserVerificationEntity userVerificationEntity;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<UserEntity> findAll() {
-		return userRepository.findAll();
-	}
-
 	@RequestMapping(method = RequestMethod.POST)
 	public void insert(@RequestBody UserEntity userEntity) {
 		userRepository.save(userEntity);
-		userVerificationEntity.setUserName(userEntity.getUserName());
+		userVerificationEntity.setUserName(userEntity.getUsername());
 		userVerificationEntity.setVerificationKey(userEntity.getToken());
 		userVerificationRepository.save(userVerificationEntity);
 		EmailSender.sendEmailForUserConfirmation(userEntity);
-	}
-
-	@RequestMapping(method = RequestMethod.PUT)
-	public UserEntity update(@RequestBody UserEntity userEntity) {
-		return userRepository.save(userEntity);
-	}
-
-	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<UserEntity> delete(@PathVariable Long id) {
-		UserEntity userFound = userRepository.findById(id);
-		userRepository.delete(userFound);
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(path = "/activate/{verificationKey}", method = RequestMethod.GET)
@@ -62,4 +41,4 @@ public class UserService implements ServiceMap {
 		userVerificationRepository.delete(userVerificationEntityFound);
 		return new RedirectView("http://conta_ativada_com_sucesso.com.br"); //TODO mudar link para página de conta ativada com sucesso
 	}
-}
+}																																						    

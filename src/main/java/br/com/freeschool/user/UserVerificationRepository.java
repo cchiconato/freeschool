@@ -1,4 +1,4 @@
-package br.com.intro.user;
+package br.com.freeschool.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

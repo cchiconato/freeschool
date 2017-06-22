@@ -1,4 +1,4 @@
-package br.com.intro.user;
+package br.com.freeschool.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Email;
 
-import br.com.intro.utils.BaseEntity;
+import br.com.freeschool.utils.BaseEntity;
 
 @Entity
 @Table(name = "user_verification")

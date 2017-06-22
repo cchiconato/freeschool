@@ -1,4 +1,4 @@
-package br.com.intro.utils;
+package br.com.freeschool.utils;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

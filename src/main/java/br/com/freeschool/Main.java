@@ -1,4 +1,4 @@
-package br.com.intro;
+package br.com.freeschool;
 
 import java.util.Date;
 import java.util.Timer;
@@ -7,7 +7,7 @@ import java.util.TimerTask;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.intro.utils.AppContext;
+import br.com.freeschool.utils.AppContext;
 
 @SpringBootApplication
 public class Main {

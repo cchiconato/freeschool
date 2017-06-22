@@ -1,11 +1,9 @@
-package br.com.intro.user;
+package br.com.freeschool.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, Long>{
 	
-	public UserEntity findByUserName(String userName);
-
-	public UserEntity findById(long id);
+	public UserEntity findByUserName(String username);
 }
 
