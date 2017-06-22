@@ -20,8 +20,8 @@ public class SubjectEntity extends BaseEntity<Long> {
 	private static final long serialVersionUID = 1L;
 	
 	@NotBlank
-	@ManyToOne
 	@JsonProperty(access = Access.WRITE_ONLY)
+	@ManyToOne
 	@JoinColumn(name ="user")
 	private UserEntity userEntity;
 	
@@ -30,7 +30,6 @@ public class SubjectEntity extends BaseEntity<Long> {
 	
 	private String teacher;
 
-	@NotBlank
 	private String importantContent;
 	
 	public UserEntity getUserEntity() {
