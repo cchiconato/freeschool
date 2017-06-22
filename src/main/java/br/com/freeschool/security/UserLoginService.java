@@ -21,12 +21,13 @@ public class UserLoginService implements UserDetailsService{
 
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-		TypedQuery<UserEntity> query = manager.createQuery("select u from Usuario u where u.login = :login",UserEntity.class).setParameter("login", login);
+		TypedQuery<UserEntity> query = manager.createQuery("select u from UserEntity u where u.userName = :login",UserEntity.class).setParameter("login", login);
 		List<UserEntity> users = query.getResultList();
-
 		if (users.isEmpty()) {
 			throw new UsernameNotFoundException("O usuario " + login + " não existe");
 		}
+		if(!users.get(0).isVerified())
+			throw new IllegalStateException("O usuario " + login + " não está ativo");
 		
 		return users.get(0);
 	}
