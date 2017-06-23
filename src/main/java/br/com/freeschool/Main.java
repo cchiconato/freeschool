@@ -26,7 +26,7 @@ public class Main {
 	public static void requestForHerokuNoSleep() {
 		InputStream is;
 		try {
-			URL url = new URL("http://ezschool.herokuapp/api/public/user");
+			URL url = new URL("http://ezschool.herokuapp.com/api/public/user");
 			is = url.openStream();
 			is.close();
 			System.out.println("Request for heroku...");
