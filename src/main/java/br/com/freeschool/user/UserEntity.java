@@ -3,9 +3,11 @@ package br.com.freeschool.user;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import br.com.freeschool.subject.SubjectEntity;
 import br.com.freeschool.utils.BaseEntity;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,6 +46,9 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	@Column(name = "registration_date")
 	private Date registrationDate = new Date();
 
+	@OneToMany(mappedBy="userEntity")
+	private List<SubjectEntity> subjects;
+
 	public void setUserName(String userName) {
 		this.userName = userName.replace(" ", "");
 	}
@@ -63,6 +69,10 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 		return registrationDate;
 	}
 
+	public List<SubjectEntity> getSubjects() {
+		return subjects;
+	}
+	
 	@JsonIgnore
 	public String getToken() {
 		String token = Jwts.builder().setSubject(getUsername()).signWith(SignatureAlgorithm.HS512, "banana")

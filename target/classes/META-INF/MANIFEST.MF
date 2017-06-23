@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
-Implementation-Title: intro
+Implementation-Title: freeschool
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: christian.chiconato
-Implementation-Vendor-Id: br.com.intro
+Built-By: chris
+Implementation-Vendor-Id: br.com.freeschool
 Build-Jdk: 1.8.0_111
-Implementation-URL: http://projects.spring.io/spring-boot/intro/
+Implementation-URL: http://projects.spring.io/spring-boot/freeschool/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.
 

@@ -17,16 +17,16 @@ public class Main {
 		new Timer().scheduleAtFixedRate(new TimerTask() {
 			@Override
 			public void run() {
-				RequestForHerokuNoSleep();
+				requestForHerokuNoSleep();
 			}
 		}, 0,  29 * 60000);
 		SpringApplication.run(AppContext.class, args);
 	}
 
-	public static void RequestForHerokuNoSleep() {
+	public static void requestForHerokuNoSleep() {
 		InputStream is;
 		try {
-			URL url = new URL("http://makeyourschool.herokuapp/api/public/user");
+			URL url = new URL("http://ezschool.herokuapp/api/public/user");
 			is = url.openStream();
 			is.close();
 		} catch (Exception e) {
