@@ -29,6 +29,7 @@ public class Main {
 			URL url = new URL("http://ezschool.herokuapp/api/public/user");
 			is = url.openStream();
 			is.close();
+			System.out.println("Request for heroku...");
 		} catch (Exception e) {
 		}
 	}

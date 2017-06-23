@@ -125,7 +125,6 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 		return result;
 	}
 
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
