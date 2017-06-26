@@ -21,12 +21,12 @@ public class EmailSender {
 			email.setSmtpPort(465);
 			email.setStartTLSRequired(true);
 			email.setSSLOnConnect(true);
-			email.setAuthenticator(new DefaultAuthenticator("plebssuporte@gmail.com", "password123?"));
+			email.setAuthenticator(new DefaultAuthenticator("godschoolcontato@gmail.com", "senha123?"));
 
-			email.setFrom("plebssuporte@gmail.com");
-			email.setSubject("Cadastro no Plebs");
+			email.setFrom("godschoolcontato@gmail.com");
+			email.setSubject("Cadastro no godschool");
 			email.setHtmlMsg(getHtmlMessage(userEntity, linkForVerification));
-			email.setTextMsg("Obrigado por cadastrar-se no Plebs! Clique no link para ativar sua conta: " + linkForVerification);
+			email.setTextMsg("Obrigado por cadastrar-se no godschool! Clique no link para ativar sua conta: " + linkForVerification);
 			email.addTo(userEntity.getUsername());
 			email.send();
 
@@ -39,7 +39,7 @@ public class EmailSender {
 		StringBuilder html = new StringBuilder();
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy"); 
 		html.append("<html><body>");
-		html.append("<h1>Obrigado por cadastrar-se no Plebs!</h1>");
+		html.append("<h1>Obrigado por cadastrar-se no godschool!</h1>");
 		html.append("<table rules='all' style='border-color: #666;' cellpadding='10'>");
 		html.append("<tr style='background: #eee;'><td><strong>Usuário :</strong> </td><td>"+userEntity.getUsername()+"</td></tr>");
 		html.append("<tr><td><strong>Data de cadastro :</strong> </td><td>"+dt.format(userEntity.getRegistrationDate())+"</td></tr>");

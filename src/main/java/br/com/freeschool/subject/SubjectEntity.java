@@ -1,8 +1,11 @@
 package br.com.freeschool.subject;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -10,6 +13,7 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import br.com.freeschool.exam.ExamEntity;
 import br.com.freeschool.user.UserEntity;
 import br.com.freeschool.utils.BaseEntity;
 
@@ -19,7 +23,6 @@ public class SubjectEntity extends BaseEntity<Long> {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@NotBlank
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	@JoinColumn(name ="user")
@@ -31,6 +34,13 @@ public class SubjectEntity extends BaseEntity<Long> {
 	private String teacher;
 
 	private String importantContent;
+	
+	@OneToMany(mappedBy="subjectEntity", cascade = CascadeType.PERSIST)
+	private List<ExamEntity> exams;
+	
+	public List<ExamEntity> getExams() {
+		return exams;
+	}
 	
 	public UserEntity getUserEntity() {
 		return userEntity;

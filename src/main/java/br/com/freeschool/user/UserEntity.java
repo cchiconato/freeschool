@@ -13,6 +13,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -32,8 +33,12 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Email
-	@Column(name = "user_name", length = 100, nullable = false, unique = true)
+	@Column(name = "user_name", length = 150, nullable = false, unique = true)
 	private String userName;
+	
+	@NotBlank
+	@Column(name = "user_fullname", length = 250, nullable = false)
+	private String userFullname;
 
 	@Column(name = "password", length = 100, nullable = false)
 	@JsonProperty(access = Access.WRITE_ONLY)
@@ -47,6 +52,7 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	private Date registrationDate = new Date();
 
 	@OneToMany(mappedBy="userEntity")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<SubjectEntity> subjects;
 
 	public void setUserName(String userName) {
@@ -112,7 +118,6 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 	}
 	
 	@Override
-	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}	
@@ -124,7 +129,15 @@ public class UserEntity extends BaseEntity<Long> implements UserDetails {
 		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
 		return result;
 	}
-
+	
+	public void setUserFullname(String userFullname) {
+		this.userFullname = userFullname;
+	}
+	
+	public String getUserFullname() {
+		return userFullname;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

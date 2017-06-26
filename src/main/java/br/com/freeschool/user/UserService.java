@@ -3,6 +3,7 @@ package br.com.freeschool.user;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -49,5 +50,10 @@ public class UserService implements ServiceMap {
 	@GetMapping
 	public ResponseEntity herokuNoSleep(){
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping(path= "/findbyid")
+	public UserEntity findUserBydId(@AuthenticationPrincipal UserEntity user){
+		return user;	
 	}
 }																																						    
