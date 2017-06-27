@@ -38,12 +38,12 @@ public class UserService implements ServiceMap {
 	@RequestMapping(path = "/activate/{verificationKey}", method = RequestMethod.GET)
 	public RedirectView activateUser(@PathVariable String verificationKey) {
 		UserVerificationEntity userVerificationEntityFound = userVerificationRepository.findByVerificationKey(verificationKey);
-		if (userVerificationEntityFound == null) return new RedirectView("http://conta_ja_ativa.com.br"); //TODO mudar link para página de conta já ativada;
+		if (userVerificationEntityFound == null) return new RedirectView("http://godschooler.appspot.com/");
 		UserEntity userFound = userRepository.findByUserName(userVerificationEntityFound.getUserName());
 		userFound.setVerified(true);
 		userRepository.save(userFound);
 		userVerificationRepository.delete(userVerificationEntityFound);
-		return new RedirectView("http://conta_ativada_com_sucesso.com.br"); //TODO mudar link para página de conta ativada com sucesso
+		return new RedirectView("http://godschooler.appspot.com/"); 
 	}
 
 	@SuppressWarnings("rawtypes")
