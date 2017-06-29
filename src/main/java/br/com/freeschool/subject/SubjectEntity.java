@@ -47,6 +47,8 @@ public class SubjectEntity extends BaseEntity<Long> {
 	}
 
 	public void setUserEntity(UserEntity userEntity) {
+		if(userEntity == null)
+			return;
 		this.userEntity = userEntity;
 	}
 
@@ -55,6 +57,8 @@ public class SubjectEntity extends BaseEntity<Long> {
 	}
 
 	public void setTitle(String title) {
+		if(title == null)
+			return;
 		this.title = title;
 	}
 
@@ -63,6 +67,8 @@ public class SubjectEntity extends BaseEntity<Long> {
 	}
 
 	public void setTeacher(String teacher) {
+		if(teacher == null)
+			return;
 		this.teacher = teacher;
 	}
 

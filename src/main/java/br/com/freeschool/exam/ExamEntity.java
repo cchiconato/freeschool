@@ -12,7 +12,7 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import br.com.freeschool.user.UserEntity;
+import br.com.freeschool.subject.SubjectEntity;
 import br.com.freeschool.utils.BaseEntity;
 
 @Entity
@@ -24,18 +24,18 @@ public class ExamEntity extends BaseEntity<Long>{
 	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	@JoinColumn(name ="subject")
-	private UserEntity subjectEntity;
+	private SubjectEntity subjectEntity;
 	
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	
 	private double grade;
 
-	public UserEntity getSubjectEntity() {
+	public SubjectEntity getSubjectEntity() {
 		return subjectEntity;
 	}
 
-	public void setSubjectEntity(UserEntity subjectEntity) {
+	public void setSubjectEntity(SubjectEntity subjectEntity) {
 		this.subjectEntity = subjectEntity;
 	}
 
